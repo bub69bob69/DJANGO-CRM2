@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
 
@@ -8,9 +7,27 @@
 <h1>REGISTER</h1>
 <br/>
 
-<form method="POST" action="{% url 'home_' %}">
+<form method="POST" action="">
 	{% csrf_token %}
-	<form>
+		<!--- Below spits the type of error to the webpage --->
+		{% if form.errors %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				Your Form Has Errors
+				{% for field in form %}
+					{% if field.errors %}
+						{{ field.errors }}
+					{% endif %}}
+				{% endfor %}
+				<button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+				</button>
+			</div>
+		{% endif %}
+
+	{{ form.as_p }}
+	
+	<br/>
+		<button type="submit" class="btn btn-warning">RehisTRO</button>
+</form>
 
 
 </div>
